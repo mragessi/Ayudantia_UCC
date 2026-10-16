@@ -29,7 +29,7 @@ Ayudantia_UCC/
 | [mallaBase3D_v0.geo](casoBase/mallaBase3D_v0.geo) | Puntos, líneas, superficies y volúmenes definidos uno por uno |
 | [mallaBase3D_v1.geo](casoBase/mallaBase3D_v1.geo) | Una macro crea las secciones y ThruSections las une |
 | [guia_sedimentador.pdf](casoBase/Guia_gmsh/guia_sedimentador.pdf) | Breve guía que explica cómo se genera la geometría y el mallado del sedimentador con Gmsh para cada archivo |
-
+| [solido_ConductoEntrada.dwg](casoBase/solido_ConductoEntrada.dwg) | Archivo dwg con el sólido de una tubería de sección cuadrada que asemeja la tubería de ingreso al sedimentador |
 
 ## Flujo de trabajo
 
