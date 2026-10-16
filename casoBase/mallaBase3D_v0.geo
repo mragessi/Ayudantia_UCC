@@ -5,21 +5,20 @@ SetFactory("OpenCASCADE");
 
 // --- Origen ---//
 
-x0 = 0;
-y0 = 0;
+x0 = 0.18;
+y0 = 0.18;
 z0 = 0;
-
 
 // ------------ Geometría de la Tolva ------------ //
 
 deltaH = 0.5;
-Point(1) = {2.15+x0, 2.15+y0, 0+z0, 1.0};
-Point(2) = {2.15+x0+deltaH, 2.15+y0, 0+z0, 1.0};
-Point(3) = {2.15+x0+deltaH, 2.15+y0+deltaH, 0+z0, 1.0};
-Point(4) = {2.15+x0, 2.15+y0+deltaH, 0+z0, 1.0};
+Point(1) = {1.975+x0, 1.975+y0, 0+z0, 1.0};
+Point(2) = {1.975+x0+deltaH, 1.975+y0, 0+z0, 1.0};
+Point(3) = {1.975+x0+deltaH, 1.975+y0+deltaH, 0+z0, 1.0};
+Point(4) = {1.975+x0, 1.975+y0+deltaH, 0+z0, 1.0};
 
-deltaV = 5.43;
-deltaH = 2.15+0.5+2.15;
+deltaV = 3; //5.43;
+deltaH = 1.975+0.5+1.975;
 Point(5) = {x0, y0, z0+deltaV, 1.0};
 Point(6) = {x0+deltaH, y0, z0+deltaV, 1.0};
 Point(7) = {x0+deltaH, y0+deltaH, z0+deltaV, 1.0};
@@ -90,13 +89,13 @@ planoSuperior[] = {5, 6, 7, 8};
 lineasVerticales[] = {9, 10, 11, 12};
 //+
 
-Longitud = 4.8;
+Longitud = 4.45;
 resolucion1 = Longitud/tamanoDeCelda+1;
 Transfinite Curve {planoInferior[]} = resolucion1 Using Progression 1;
 Transfinite Curve {planoSuperior[]} = resolucion1 Using Progression 1;
 
 
-Longitud = 5.43;
+Longitud = 3;
 resolucion2 = Longitud/tamanoDeCelda+1;
 Transfinite Curve {lineasVerticales[]} = resolucion2 Using Progression 1.02;
 
@@ -108,31 +107,31 @@ Recombine Surface {tolva[]};
 Transfinite Volume{1};
 
 // ------------ Geometría del Sedimentador ------------ //
-deltaV = 5.43+1.6;
-deltaH = 2.15+0.5+2.15;
+deltaV = 3+1.6;
+deltaH = 1.975+0.5+1.975;
 Point(9) = {x0, y0, z0+deltaV, 1.0};
 Point(10) = {x0+deltaH, y0, z0+deltaV, 1.0};
 Point(11) = {x0+deltaH, y0+deltaH, z0+deltaV, 1.0};
 Point(12) = {x0, y0+deltaH, z0+deltaV, 1.0};
 
-deltaV = 5.43+1.6+1.05;
-deltaH = 2.15+0.5+2.15;
+deltaV = 3+1.6+1.05;
+deltaH = 1.975+0.5+1.975;
 deltaH2 = 0.7485;
 Point(13) = {x0, y0, z0+deltaV, 1.0};
 Point(14) = {x0+deltaH+deltaH2, y0, z0+deltaV, 1.0};
 Point(15) = {x0+deltaH+deltaH2, y0+deltaH, z0+deltaV, 1.0};
 Point(16) = {x0, y0+deltaH, z0+deltaV, 1.0};
 
-deltaV = 5.43+1.6+1.05+1;
-deltaH = 2.15+0.5+2.15;
+deltaV = 3+1.6+1.05+1;
+deltaH = 1.975+0.5+1.975;
 deltaH2 = 0.7485;
 Point(17) = {x0, y0, z0+deltaV, 1.0};
 Point(18) = {x0+deltaH+deltaH2, y0, z0+deltaV, 1.0};
 Point(19) = {x0+deltaH+deltaH2, y0+deltaH, z0+deltaV, 1.0};
 Point(20) = {x0, y0+deltaH, z0+deltaV, 1.0};
 
-deltaV = 5.43+1.6+1.05+1+0.5;
-deltaH = 2.15+0.5+2.15;
+deltaV = 3+1.6+1.05+1+0.3;
+deltaH = 1.975+0.5+1.975;
 deltaH2 = 0.7485;
 Point(21) = {x0, y0, z0+deltaV, 1.0};
 Point(22) = {x0+deltaH+deltaH2, y0, z0+deltaV, 1.0};
@@ -188,7 +187,7 @@ Line(33) = {9, 13}; Line(34) = {10, 14}; Line(35) = {11, 15}; Line(36) = {12, 16
 nivel2[] = {33:36};
 h2 = 1.05;
 R2 = h2/tamanoDeCelda+1;
-Transfinite Curve {nivel1[]} = R2 Using Progression 1;
+Transfinite Curve {nivel2[]} = R2 Using Progression 1;
 
 Line(37) = {13, 17}; Line(38) = {14, 18}; Line(39) = {15, 19}; Line(40) = {16, 20};
 nivel3[] = {37:40};
@@ -198,9 +197,9 @@ Transfinite Curve {nivel3[]} = R3 Using Progression 1;
 
 Line(41) = {17, 21}; Line(42) = {18, 22}; Line(43) = {19, 23}; Line(44) = {20, 24};
 nivel4[] = {41:44};
-h4 = 0.5;
+h4 = 0.3;
 R4 = h4/tamanoDeCelda+1;
-Transfinite Curve {nivel3[]} = R4 Using Progression 1;
+Transfinite Curve {nivel4[]} = R4 Using Progression 1;
 
 //+
 Curve Loop(7) = {13, 14, 15, 16};
@@ -308,3 +307,40 @@ Volume(5) = {5};
 volumenSedimentador[] = {2,3,4,5};
 Transfinite Volume{volumenSedimentador[]};
 
+// Caja en y de -0.001 a 5 para incluir las extrusiones de +-L (el cuerpo ocupa y de 0.18 a 4.63)
+aguasArriba[] = Surface In BoundingBox {0.179, -0.001, 0, 0.181, 5, 7};
+
+Printf("aguasArriba: %g superficies seleccionadas", #aguasArriba[]);
+For i In {0:#aguasArriba[]-1}
+  Printf("  Surface %g", aguasArriba[i]);
+EndFor
+
+L = 0.18;
+celdas = L/tamanoDeCelda+1;
+Extrude {-L, 0, 0} { Surface{aguasArriba[]}; Layers {celdas}; Recombine; }
+
+surperficies[] = {12, 16, 20, 24};
+Extrude {L, 0, 0} { Surface{surperficies[]}; Layers {celdas}; Recombine; }
+
+derecha[] = Surface In BoundingBox {-0.001, 0.179, 0, 6, 0.181, 7};
+Printf("derecha: %g superficies seleccionadas", #derecha[]);
+For i In {0:#derecha[]-1}
+  Printf("  Surface %g", derecha[i]);
+EndFor
+Extrude {0, -L, 0} { Surface{derecha[]}; Layers {celdas}; Recombine; }
+
+izquierda[] = Surface In BoundingBox {-0.001, 4.629, 0, 6, 4.631, 7};
+Printf("izquierda: %g superficies seleccionadas", #izquierda[]);
+For i In {0:#izquierda[]-1}
+  Printf("  Surface %g", izquierda[i]);
+EndFor
+Extrude {0, L, 0} { Surface{izquierda[]}; Layers {celdas}; Recombine; }
+
+
+
+// ---- Volúmenes y contornos ---- 
+
+Physical Volume("internalMesh") = {Volume{:}};
+
+topSurface[] = Surface In BoundingBox {-1, -1, 6.949, 7, 7, 6.96};
+Physical Surface("top") = {topSurface[]};
